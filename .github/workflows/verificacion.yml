@@ -1,0 +1,28 @@
+name: Recordatorio Verificación
+
+on:
+  workflow_dispatch: # Botón manual para probar
+  schedule:
+    # Corre todos los LUNES a las 15:00 UTC (9:00 AM hora CDMX aprox)
+    - cron: '0 15 * * 1'
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v3
+
+      - name: Instalar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Instalar librerías
+        run: pip install requests pytz
+
+      - name: Ejecutar Aviso
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python main.py
