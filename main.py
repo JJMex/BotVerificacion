@@ -8,9 +8,9 @@ from datetime import datetime
 TOKEN = os.environ.get('TELEGRAM_TOKEN')
 CHAT_ID = os.environ.get('TELEGRAM_CHAT_ID')
 
-# ENLACES OFICIALES DE MORELOS
+# ENLACES (Mantienen la lógica de Morelos pero el texto será genérico)
 LINK_CITAS = "https://airepuromorelos.com.mx/"
-LINK_PAGOS = "http://hacienda.morelos.gob.mx/" # Portal de Hacienda Morelos para adeudos
+LINK_PAGOS = "http://hacienda.morelos.gob.mx/"
 
 def enviar_telegram(mensaje):
     if not TOKEN or not CHAT_ID: return
@@ -40,7 +40,7 @@ def obtener_info_verificacion():
     vence = ""
     inicia = ""
 
-    # Calendario Morelos (Homologado con la CAMe)
+    # Lógica de Semestres (Universal)
     if mes == 1 or mes == 7:
         inicia = "🟡 <b>Engomado Amarillo</b> (Placas 5 y 6)"
     elif mes == 2 or mes == 8:
@@ -63,8 +63,8 @@ def obtener_info_verificacion():
 def main():
     mes_nombre, vence, inicia = obtener_info_verificacion()
     
-    msg = f"📡 <i>Sincronizando calendario de emisiones y trámites (Morelos)...</i>\n\n"
-    msg += f"📅 <b>CALENDARIO MORELOS: {mes_nombre} 2026</b>\n"
+    msg = f"📡 <i>Sincronizando calendario de emisiones y trámites vehiculares...</i>\n\n"
+    msg += f"📅 <b>CALENDARIO: {mes_nombre} 2026</b>\n"
     msg += "──────────────────\n"
 
     if vence:
@@ -73,13 +73,13 @@ def main():
     if inicia:
         msg += f"✨ <b>INICIA PERIODO:</b>\n{inicia}\n\n"
 
-    msg += "📝 <b>PASOS PARA MORELOS:</b>\n"
-    msg += f"1. Verifica adeudos de Tenencia/Multas:\n<a href='{LINK_PAGOS}'>Portal de Hacienda Morelos</a>\n"
-    msg += "2. No tener infracciones pendientes.\n\n"
+    msg += "📝 <b>PASOS A SEGUIR:</b>\n"
+    msg += f"1. Verificar adeudos de Tenencia/Multas:\n<a href='{LINK_PAGOS}'>Consultar portal de pagos</a>\n"
+    msg += "2. Confirmar que no existan infracciones pendientes.\n\n"
     
-    msg += f"<b>🗓️ AGENDAR CITA (Morelos):</b>\n<a href='{LINK_CITAS}'>Aire Puro Morelos</a>\n"
+    msg += f"<b>🗓️ AGENDAR CITA:</b>\n<a href='{LINK_CITAS}'>Sistema de Verificación Vehicular</a>\n"
     msg += "──────────────────\n"
-    msg += "<i>Evita la multa por verificación extemporánea en el estado.</i>"
+    msg += "<i>Evita multas por verificación extemporánea ($2,171+ MXN).</i>"
 
     enviar_telegram(msg)
 
