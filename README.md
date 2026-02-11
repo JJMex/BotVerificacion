@@ -26,42 +26,49 @@ Si deseas utilizar este bot para una entidad distinta a Morelos, solo debes real
 
 1. **Actualizar Enlaces Oficiales:**
    Busca la sección de configuración al inicio del código y reemplaza las URLs:
-   ```python
-   LINK_CITAS = "URL_SISTEMA_CITAS_NUEVO"
-   LINK_PAGOS = "URL_PORTAL_ADEUDOS_NUEVO"
+   * `LINK_CITAS`
+   * `LINK_PAGOS`
 
-   Validar el Calendario: Aunque la mayoría de los estados de la CAMe comparten el mismo calendario, verifica la función obtener_info_verificacion() por si existiera alguna prórroga específica en el nuevo estado.
+2. **Validar el Calendario:**
+   Aunque la mayoría de los estados de la CAMe comparten el mismo calendario, verifica la función `obtener_info_verificacion()` por si existiera alguna prórroga específica.
 
-Ajustar Requisitos: Puedes editar la lista de pasos en la sección 📝 PASOS A SEGUIR dentro de la función main() para incluir menciones a Fotocívicas o reglamentos locales.
+3. **Ajustar Requisitos:**
+   Puedes editar la lista de pasos en la sección `📝 PASOS A SEGUIR` dentro de la función `main()`.
 
-🚀 Instalación y Despliegue
-Este bot funciona de forma 100% gratuita mediante GitHub Actions.
+---
 
-Realiza un Fork de este repositorio.
+## 🚀 Instalación y Despliegue
 
-Configura tus secretos en Settings > Secrets and variables > Actions:
+Este bot funciona de forma 100% gratuita mediante **GitHub Actions**.
 
-TELEGRAM_TOKEN: El token de tu bot de @BotFather.
+1. Realiza un **Fork** de este repositorio.
+2. Configura tus secretos en `Settings > Secrets and variables > Actions`:
+   * `TELEGRAM_TOKEN`: El token de tu bot de @BotFather.
+   * `TELEGRAM_CHAT_ID`: Tu ID de chat personal.
+3. Habilita los flujos de trabajo en la pestaña **Actions**. 
 
-TELEGRAM_CHAT_ID: Tu ID de chat personal.
+---
 
-Habilita los flujos de trabajo en la pestaña Actions.
+## 📸 Ejemplo de Notificación
 
-Nota: El bot se ejecutará automáticamente con cada Push que realices al código y de forma programada cada inicio de semana.
+> 📡 _Sincronizando calendario de emisiones y trámites vehiculares..._
+>
+> 📅 **CALENDARIO: FEBRERO 2026**
+> ──────────────────
+> 🚨 **FECHA LÍMITE (Vence este mes):**
+> 🟡 **Engomado Amarillo** (Placas 5 y 6)
+>
+> ✨ **INICIA PERIODO:**
+> 🌸 **Engomado Rosa** (Placas 7 y 8)
+>
+> 📝 **PASOS A SEGUIR:**
+> 1. Verificar adeudos de Tenencia/Multas.
+> 2. Confirmar que no existan infracciones pendientes.
+>
+> 🗓️ **AGENDAR CITA:**
+> [Enlace al Sistema de Verificación]
+> ──────────────────
 
-📸 Ejemplo de Notificación
-📡 Sincronizando calendario de emisiones y trámites vehiculares...
-
-📅 CALENDARIO: FEBRERO 2026 ────────────────── 🚨 FECHA LÍMITE (Vence este mes): 🟡 Engomado Amarillo (Placas 5 y 6)
-
-✨ INICIA PERIODO: 🌸 Engomado Rosa (Placas 7 y 8)
-
-📝 PASOS A SEGUIR:
-
-Verificar adeudos de Tenencia/Multas.
-
-Confirmar que no existan infracciones pendientes.
-
-🗓️ AGENDAR CITA: [Enlace al Sistema de Verificación] ──────────────────
-
-<p align="center"> <i>Evita multas extemporáneas con monitoreo preventivo. 🚗</i> </p>
+<p align="center">
+  <i>Evita multas extemporáneas con monitoreo preventivo. 🚗</i>
+</p>
