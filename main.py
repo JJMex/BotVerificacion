@@ -8,12 +8,12 @@ from datetime import datetime
 TOKEN = os.environ.get('TELEGRAM_TOKEN')
 CHAT_ID = os.environ.get('TELEGRAM_CHAT_ID')
 
+# Aseguramos que los nombres coincidan exactamente
 LINK_CITAS = "https://verificentros.sedema.cdmx.gob.mx/DVC/"
 LINK_MULTAS = "https://tramites.cdmx.gob.mx/infracciones/"
 
 def enviar_telegram(mensaje):
     if not TOKEN or not CHAT_ID: return
-    # Sistema de reintentos profesional
     for i in range(1, 4):
         try:
             url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
@@ -40,7 +40,7 @@ def obtener_info_verificacion():
     vence = ""
     inicia = ""
 
-    # Lógica de Semestres (Mismos colores para ambos periodos)
+    # Lógica de Semestres
     if mes == 1 or mes == 7:
         inicia = "🟡 <b>Engomado Amarillo</b> (Placas 5 y 6)"
     elif mes == 2 or mes == 8:
@@ -63,7 +63,6 @@ def obtener_info_verificacion():
 def main():
     mes_nombre, vence, inicia = obtener_info_verificacion()
     
-    # --- CONSTRUCCIÓN DEL MENSAJE (Estilo System Log) ---
     msg = f"📡 <i>Sincronizando calendario de emisiones y trámites vehiculares...</i>\n\n"
     msg += f"📅 <b>CALENDARIO: {mes_nombre} 2026</b>\n"
     msg += "──────────────────\n"
@@ -78,7 +77,8 @@ def main():
     msg += f"• No tener adeudos: <a href='{LINK_MULTAS}'>Consultar Multas aquí</a>\n"
     msg += "• Estar al corriente con la Tenencia.\n\n"
     
-    msg += f"<b>🗓️ AGENDAR CITA:</b>\n<a href='{LINK_citas}'>Sistema de Verificentros CDMX</a>\n"
+    # AQUÍ ESTABA EL ERROR: Ahora usamos LINK_CITAS en mayúsculas
+    msg += f"<b>🗓️ AGENDAR CITA:</b>\n<a href='{LINK_CITAS}'>Sistema de Verificentros CDMX</a>\n"
     msg += "──────────────────\n"
     msg += "<i>Evita multas por verificación extemporánea ($2,171+ MXN).</i>"
 
